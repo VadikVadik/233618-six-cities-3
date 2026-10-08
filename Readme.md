@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Вадим Голубев](https://up.htmlacademy.ru/react-individual/3/user/233618).
-* Наставник: `Неизвестно`.
+- Студент: [Вадим Голубев](https://up.htmlacademy.ru/react-individual/3/user/233618).
+- Наставник: [Дмитрий Атаманов](https://htmlacademy.ru/profile/id226241).
 
 ---
 
