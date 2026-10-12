@@ -1,4 +1,4 @@
-function FavoritesEmptyScreen(): JSX.Element {
+function FavoritesEmptyScreen() {
   return (
     <div className="page page--favorites-empty">
       <header className="header">

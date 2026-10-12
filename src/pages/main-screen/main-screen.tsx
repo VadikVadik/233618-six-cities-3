@@ -4,7 +4,7 @@ type MainScreenProps = {
   totalPlacesCount: number;
 };
 
-function MainScreen({ totalPlacesCount }: MainScreenProps): JSX.Element {
+function MainScreen({ totalPlacesCount }: MainScreenProps) {
   return (
     <div className="page page--gray page--main">
       <header className="header">
