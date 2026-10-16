@@ -8,7 +8,6 @@ function MainEmptyScreen() {
           <div className="header__wrapper">
             <div className="header__left">
               <Logo />
-              </a>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
