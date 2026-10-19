@@ -1,5 +1,6 @@
 import Logo from '../../components/logo/logo';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 function NotFoundScreen() {
   return (
@@ -17,7 +18,7 @@ function NotFoundScreen() {
       <main className="page__main page__main--index">
         <div className="container">
           <h1>404 Not Found</h1>
-          <Link className="locations__item-link" to="/">
+          <Link className="locations__item-link" to={AppRoute.ROOT}>
             Back to main screen
           </Link>
         </div>

@@ -5,31 +5,34 @@ import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import Header from '../header/header';
 import { AppRoute } from '../../const';
 
-type AppScreenProps = {
-  totalPlacesCount: number;
-};
-
-function App({ totalPlacesCount }: AppScreenProps): JSX.Element {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path={AppRoute.Root}
-          element={<MainScreen totalPlacesCount={totalPlacesCount} />}
+          path={AppRoute.ROOT}
+          element={<MainScreen header={<Header authorizationStatus />} />}
         />
-        <Route path={AppRoute.Login} element={<LoginScreen />} />
         <Route
-          path={AppRoute.Favorites}
+          path={AppRoute.LOGIN}
+          element={<LoginScreen header={<Header authorizationStatus />} />}
+        />
+        <Route
+          path={AppRoute.FAVORITES}
           element={
             <PrivateRoute>
-              <FavoritesScreen />
+              <FavoritesScreen header={<Header authorizationStatus />} />
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Offer} element={<OfferScreen />} />
-        <Route path="*" element={<NotFoundScreen />} />
+        <Route
+          path={AppRoute.OFFER}
+          element={<OfferScreen header={<Header authorizationStatus />} />}
+        />
+        <Route path={AppRoute.NOT_FOUND} element={<NotFoundScreen />} />
       </Routes>
     </BrowserRouter>
   );

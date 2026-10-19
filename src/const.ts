@@ -1,12 +1,13 @@
 const Setting = {
-  TotalPlacesCount: 312,
+  TOTAL_PLACES_COUNT: 312,
 };
 
 enum AppRoute {
-  Root = '/',
-  Login = '/login',
-  Favorites = '/favorites',
-  Offer = '/offer/:id',
+  ROOT = '/',
+  LOGIN = '/login',
+  FAVORITES = '/favorites',
+  OFFER = '/offer/:id',
+  NOT_FOUND = '*',
 }
 
 export { Setting, AppRoute };
