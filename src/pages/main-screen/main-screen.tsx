@@ -1,11 +1,13 @@
-import PlaceCard from '../../components/place-card/place-card';
+import PlacesList from '../../components/places-list/places-list';
 import { Setting } from '../../const';
+import { Offers } from '../../types/offers';
 
 type MainScreenProprs = {
   header: JSX.Element;
+  offers: Offers;
 };
 
-function MainScreen({ header }: MainScreenProprs) {
+function MainScreen({ header, offers }: MainScreenProprs) {
   return (
     <div className="page page--gray page--main">
       {header}
@@ -81,13 +83,7 @@ function MainScreen({ header }: MainScreenProprs) {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

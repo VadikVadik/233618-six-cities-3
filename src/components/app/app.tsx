@@ -19,7 +19,12 @@ function App({ offers }: AppScreenProps) {
       <Routes>
         <Route
           path={AppRoute.ROOT}
-          element={<MainScreen header={<Header authorizationStatus />} />}
+          element={
+            <MainScreen
+              header={<Header authorizationStatus />}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.LOGIN}
@@ -29,7 +34,10 @@ function App({ offers }: AppScreenProps) {
           path={AppRoute.FAVORITES}
           element={
             <PrivateRoute>
-              <FavoritesScreen header={<Header authorizationStatus />} />
+              <FavoritesScreen
+                header={<Header authorizationStatus />}
+                offers={offers}
+              />
             </PrivateRoute>
           }
         />
