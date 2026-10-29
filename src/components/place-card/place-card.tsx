@@ -1,4 +1,5 @@
 import { Offer } from '../../types/offers';
+import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -16,7 +17,7 @@ function PlaceCard({ offer, onMouseOver }: PlaceCardProps) {
         </div>
       ) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -24,7 +25,7 @@ function PlaceCard({ offer, onMouseOver }: PlaceCardProps) {
             height="200"
             alt={offer.title}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -46,7 +47,7 @@ function PlaceCard({ offer, onMouseOver }: PlaceCardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
