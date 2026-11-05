@@ -1,9 +1,9 @@
 import PlaceCard from '../place-card/place-card';
-import { Offers, Offer } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { useState } from 'react';
 
 type PlacesListProps = {
-  offers: Offers;
+  offers: Offer[];
 };
 
 function PlacesList({ offers }: PlacesListProps) {

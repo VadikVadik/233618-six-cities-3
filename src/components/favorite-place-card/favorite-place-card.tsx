@@ -8,18 +8,20 @@ type FavoritePlaceCardProps = {
 function FavoritePlaceCard({ offer }: FavoritePlaceCardProps) {
   const ratingPercent = ((offer.rating / 5) * 100).toString();
 
+  const { isPremium, id, previewImage, price, title, type } = offer;
+
   return (
     <article className="favorites__card place-card">
-      {offer.isPremium ? (
+      {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : null}
+      )}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
-            src={offer.previewImage}
+            src={previewImage}
             width="150"
             height="110"
             alt="Place image"
@@ -29,7 +31,7 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps) {
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -49,9 +51,9 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

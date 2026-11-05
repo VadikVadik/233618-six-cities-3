@@ -7,13 +7,9 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
-import { Offers } from '../../types/offers';
+import { offers } from '../../mocks/offers';
 
-type AppScreenProps = {
-  offers: Offers;
-};
-
-function App({ offers }: AppScreenProps) {
+function App() {
   return (
     <BrowserRouter>
       <Routes>

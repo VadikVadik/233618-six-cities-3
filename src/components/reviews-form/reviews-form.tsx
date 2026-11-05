@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, Fragment } from 'react';
 
 function ReviewsForm() {
-  const [userRating, setUserRating] = useState([
+  const [userRatings, setUserRatings] = useState([
     { title: 'perfect', value: 5, checked: false },
     { title: 'good', value: 4, checked: false },
     { title: 'not bad', value: 3, checked: false },
@@ -11,37 +11,47 @@ function ReviewsForm() {
 
   const [userReview, setUserReview] = useState('');
 
+  const handleRatingChange = (
+    value: number,
+    target: ChangeEvent<HTMLInputElement>['target'],
+  ) => {
+    const newUserRatings = userRatings.map((rating) => {
+      let checked = false;
+      if (rating.value === value) {
+        checked = target.checked;
+      }
+
+      return { ...rating, checked: checked };
+    });
+
+    setUserRatings(newUserRatings);
+  };
+
+  const handleReviewChange = (
+    target: ChangeEvent<HTMLTextAreaElement>['target'],
+  ) => setUserReview(target.value);
+
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {userRating.map((ratingItem, id) => (
-          <Fragment key={ratingItem.value}>
+        {userRatings.map(({ value, title, checked }) => (
+          <Fragment key={value}>
             <input
               className="form__rating-input visually-hidden"
               name="rating"
-              value={ratingItem.value}
-              id={`${ratingItem.value}-stars`}
+              value={value}
+              id={`${value}-stars`}
               type="radio"
-              checked={ratingItem.checked}
-              onChange={({ target }: ChangeEvent<HTMLInputElement>) => {
-                setUserRating([
-                  ...userRating
-                    .slice(0, id)
-                    .map((item) => ({ ...item, checked: false })),
-                  { ...ratingItem, checked: target.checked },
-                  ...userRating
-                    .slice(id + 1)
-                    .map((item) => ({ ...item, checked: false })),
-                ]);
-              }}
+              checked={checked}
+              onChange={({ target }) => handleRatingChange(value, target)}
             />
             <label
-              htmlFor={`${ratingItem.value}-stars`}
+              htmlFor={`${value}-stars`}
               className="reviews__rating-label form__rating-label"
-              title={ratingItem.title}
+              title={title}
             >
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
@@ -57,7 +67,7 @@ function ReviewsForm() {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={userReview}
         onChange={({ target }: ChangeEvent<HTMLTextAreaElement>) => {
-          setUserReview(target.value);
+          handleReviewChange(target);
         }}
       />
       <div className="reviews__button-wrapper">

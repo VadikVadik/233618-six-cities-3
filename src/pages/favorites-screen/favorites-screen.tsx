@@ -1,9 +1,9 @@
 import FavoritePlaceCard from '../../components/favorite-place-card/favorite-place-card';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 
 type FavoritesScreenProprs = {
   header: JSX.Element;
-  offers: Offers;
+  offers: Offer[];
 };
 
 function FavoritesScreen({ header, offers }: FavoritesScreenProprs) {
@@ -19,10 +19,7 @@ function FavoritesScreen({ header, offers }: FavoritesScreenProprs) {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               {cities.map((city) => (
-                <li
-                  key={crypto.randomUUID()}
-                  className="favorites__locations-items"
-                >
+                <li key={city} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
                       <a className="locations__item-link" href="#">
@@ -31,11 +28,11 @@ function FavoritesScreen({ header, offers }: FavoritesScreenProprs) {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {favoritesOffers.map((offer) =>
-                      offer.city.name === city ? (
+                    {favoritesOffers
+                      .filter((offer) => offer.city.name === city)
+                      .map((offer) => (
                         <FavoritePlaceCard key={offer.id} offer={offer} />
-                      ) : null,
-                    )}
+                      ))}
                   </div>
                 </li>
               ))}
