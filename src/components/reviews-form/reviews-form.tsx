@@ -11,18 +11,11 @@ function ReviewsForm() {
 
   const [userReview, setUserReview] = useState('');
 
-  const handleRatingChange = (
-    value: number,
-    target: ChangeEvent<HTMLInputElement>['target'],
-  ) => {
-    const newUserRatings = userRatings.map((rating) => {
-      let checked = false;
-      if (rating.value === value) {
-        checked = target.checked;
-      }
-
-      return { ...rating, checked: checked };
-    });
+  const handleRatingChange = (value: number) => {
+    const newUserRatings = userRatings.map((rating) => ({
+      ...rating,
+      checked: rating.value === value,
+    }));
 
     setUserRatings(newUserRatings);
   };
@@ -46,7 +39,7 @@ function ReviewsForm() {
               id={`${value}-stars`}
               type="radio"
               checked={checked}
-              onChange={({ target }) => handleRatingChange(value, target)}
+              onChange={() => handleRatingChange(value)}
             />
             <label
               htmlFor={`${value}-stars`}
