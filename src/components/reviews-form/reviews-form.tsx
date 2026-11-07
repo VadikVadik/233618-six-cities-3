@@ -59,9 +59,7 @@ function ReviewsForm() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={userReview}
-        onChange={({ target }: ChangeEvent<HTMLTextAreaElement>) => {
-          handleReviewChange(target);
-        }}
+        onChange={({ target }) => handleReviewChange(target)}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
