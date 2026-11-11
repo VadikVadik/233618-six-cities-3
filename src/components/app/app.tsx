@@ -7,6 +7,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
+import { offers } from '../../mocks/offers';
 
 function App() {
   return (
@@ -14,7 +15,12 @@ function App() {
       <Routes>
         <Route
           path={AppRoute.ROOT}
-          element={<MainScreen header={<Header authorizationStatus />} />}
+          element={
+            <MainScreen
+              header={<Header authorizationStatus />}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.LOGIN}
@@ -24,7 +30,10 @@ function App() {
           path={AppRoute.FAVORITES}
           element={
             <PrivateRoute>
-              <FavoritesScreen header={<Header authorizationStatus />} />
+              <FavoritesScreen
+                header={<Header authorizationStatus />}
+                offers={offers}
+              />
             </PrivateRoute>
           }
         />

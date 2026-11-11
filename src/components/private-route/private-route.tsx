@@ -6,7 +6,7 @@ type PrivaterouteProps = {
 };
 
 function PrivateRoute({ children }: PrivaterouteProps) {
-  const authorizationStatus = false;
+  const authorizationStatus = true;
 
   return authorizationStatus ? children : <Navigate to={AppRoute.LOGIN} />;
 }
