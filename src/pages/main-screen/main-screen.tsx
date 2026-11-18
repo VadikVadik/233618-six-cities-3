@@ -1,6 +1,8 @@
 import PlacesList from '../../components/places-list/places-list';
-import { Setting } from '../../const';
+import CityTabsList from '../../components/city-tabs-list/city-tabs-list';
+import Map from '../../components/map/map';
 import { Offer } from '../../types/offers';
+import { MouseEvent, useState } from 'react';
 
 type MainScreenProprs = {
   header: JSX.Element;
@@ -8,54 +10,30 @@ type MainScreenProprs = {
 };
 
 function MainScreen({ header, offers }: MainScreenProprs) {
+  const [currentCity, setCurrentCity] = useState('Amsterdam');
+  const currentCityOffers = offers.filter(
+    (offer) => offer.city.name === currentCity,
+  );
+
+  const handleCityTabClick = (event: MouseEvent) =>
+    setCurrentCity(event.currentTarget.textContent);
+
   return (
     <div className="page page--gray page--main">
       {header}
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CityTabsList
+          currentCity={currentCity}
+          tabClickHandler={handleCityTabClick}
+        />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {Setting.TOTAL_PLACES_COUNT} places to stay in Amsterdam
+                {currentCityOffers.length} places to stay in {currentCity}
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
@@ -65,7 +43,7 @@ function MainScreen({ header, offers }: MainScreenProprs) {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                <ul className="places__options places__options--custom">
                   <li
                     className="places__option places__option--active"
                     tabIndex={0}
@@ -83,10 +61,10 @@ function MainScreen({ header, offers }: MainScreenProprs) {
                   </li>
                 </ul>
               </form>
-              <PlacesList offers={offers} />
+              <PlacesList offers={currentCityOffers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map />
             </div>
           </div>
         </div>

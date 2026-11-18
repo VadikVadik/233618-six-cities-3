@@ -1,7 +1,3 @@
-const Setting = {
-  TOTAL_PLACES_COUNT: 312,
-};
-
 enum AppRoute {
   ROOT = '/',
   LOGIN = '/login',
@@ -10,4 +6,13 @@ enum AppRoute {
   NOT_FOUND = '*',
 }
 
-export { Setting, AppRoute };
+const CITIES = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];
+
+export { AppRoute, CITIES };
