@@ -20,8 +20,13 @@ function MainScreen({ header, offers }: MainScreenProprs) {
 
   const handleOffersItemHover = (offer: Offer) => setSelectedOffer(offer);
 
-  const handleCityTabClick = (event: MouseEvent) =>
-    setCurrentCity(event.currentTarget.textContent);
+  const handleCityTabClick = (event: MouseEvent) => {
+    const city = event.currentTarget.textContent;
+
+    if (city) {
+      setCurrentCity(city);
+    }
+  };
 
   return (
     <div className="page page--gray page--main">
