@@ -22,4 +22,4 @@ type Offer = {
   rating: number;
 };
 
-export type { Offer };
+export type { Offer, City };

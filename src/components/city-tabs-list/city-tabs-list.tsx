@@ -5,10 +5,10 @@ import cn from 'classnames';
 
 type CityTabsListProps = {
   currentCity: string;
-  tabClickHandler: (event: MouseEvent) => void;
+  onTabClick: (event: MouseEvent) => void;
 };
 
-function CityTabsList({ currentCity, tabClickHandler }: CityTabsListProps) {
+function CityTabsList({ currentCity, onTabClick }: CityTabsListProps) {
   return (
     <div className="tabs">
       <section className="locations container">
@@ -20,7 +20,7 @@ function CityTabsList({ currentCity, tabClickHandler }: CityTabsListProps) {
                   'tabs__item--active': city === currentCity,
                 })}
                 to="#"
-                onClick={(event) => tabClickHandler(event)}
+                onClick={(event) => onTabClick(event)}
               >
                 <span>{city}</span>
               </Link>
